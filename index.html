@@ -1,10 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Button Example</title>
+  <title>Button with Toast Example</title>
+  <style>
+    /* Toast CSS */
+    .toast {
+      visibility: hidden;
+      max-width: 250px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      padding: 16px;
+      position: fixed;
+      z-index: 1;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      font-family: Arial, sans-serif;
+    }
+    
+    .toast.show {
+      visibility: visible;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+    
+    @keyframes fadein {
+      from {
+        bottom: 0;
+        opacity: 0;
+      }
+      to {
+        bottom: 30px;
+        opacity: 1;
+      }
+    }
+    
+    @keyframes fadeout {
+      from {
+        bottom: 30px;
+        opacity: 1;
+      }
+      to {
+        bottom: 0;
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-  <button>Click me!</button>
+  <button onclick="showToast()">Show Toast</button>
+  
+  <div id="toastContainer">
+    <div id="toast" class="toast"></div>
+  </div>
+  
+  <script>
+    function showToast() {
+      var toast = document.getElementById("toast");
+      
+      // Set the toast message
+      toast.innerHTML = "Hello, this is a toast message!";
+      
+      // Show the toast
+      toast.classList.add("show");
+      
+      // Hide the toast after 3 seconds
+      setTimeout(function() {
+        toast.classList.remove("show");
+      }, 3000);
+    }
+  </script>
 </body>
 </html>
 
